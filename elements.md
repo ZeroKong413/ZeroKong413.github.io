@@ -2,143 +2,48 @@
 title: Elements
 feature_text: |
   A demo of Markdown and HTML includes
-feature_image: "https://picsum.photos/2560/600?image=873"
-excerpt: "A demo of Markdown and HTML includes"
+feature_image: 'https://picsum.photos/2560/600?image=873'
+excerpt: A demo of Markdown and HTML includes
 aside: true
+published: true
 ---
+##  **판다스 정리 part 1**
 
-# Heading 1
+pd.Series(딕셔너리 데이터) = 딕셔너리를 시리즈(1차원 배열)로 변환
 
-## Heading 2
+sr.index = 인덱스 배열
 
-### Heading 3
+sr.values = 데이터 값 배열
 
-#### Heading 4
+pd.DataFrame(딕셔너리 데이터) = 딕셔너리를 데이터프레임(2차원 배열)로 변환
 
-##### Heading 5
+pd.DataFrame(2차원 배열, index = 행 인덱스 배열, columns = 열 이름 배열)로 지정 가능
 
-###### Heading 6
+df.index =[‘  ’, ‘  ’] = 인덱스의 이름 변경 가능 (열 이름(columns)도 가능)
 
-<small>A small element</small>
+df.rename(index = [] or columns = [], inplace = True) = 행 또는 열 이름의 일부를 선택하여 변경 가능 (단, 원본 객체를 직접 수정하는 것이 아니기 때문에 원본 객체를 수정하려면 inplace = True 를 써줘야 함)
 
-[A link](https://david.darn.es "A link")
+df.drop(행 인덱스, axis = 0) = 행 삭제 (얘도 inplace = True)
 
-Lorem ipsum dolor sit amet, consectetur adip* isicing elit, sed do eiusmod *tempor incididunt ut labore et dolore magna aliqua.
+df.drop(열 인덱스, axis = 1) = 열 삭제 (얘도 inplace = True)
 
-Duis aute irure dolor in [A link](https://david.darn.es "A link") reprehenderit in voluptate velit esse cillum **bold text** dolore eu fugiat nulla pariatur. Excepteur span element sint occaecat cupidatat non proident, sunt _italicised text_ in culpa qui officia deserunt mollit anim id `some code` est laborum.
+df.loc[인덱스 이름] = 데이터 프레임의 행 데이터를 선택할 때 사용 (범위 끝 포함)
 
-* An item
-* An item
-* An item
-* An item
-* An item
+df.iloc[정수형 위치 인덱스] = (범위 끝 제외)
 
-1. Item one
-2. Item two
-3. Item three
-4. Item four
-5. Item five
+df[‘열 이름’] or df.열이름 = 열 데이터를 선택할 때 사용 (방법2는 열 이름이 문자열일 때 사용 가능)
 
-> A simple blockquote
+df[[‘열1’, ‘열2’, ‘열3’]] = 열 데이터를 여러 개 선택
 
-Some HTML...
+df.loc[행 인덱스, 열 이름] = 원소 선택 , df.loc[‘행 인덱스’, [‘열 이름’, ‘열이름’]]
 
-``` html
-<blockquote cite="http://www.imdb.com/title/tt0284978/quotes/qt1375101">
-  <p>You planning a vacation, Mr. Sullivan?</p>
-  <footer>
-    <a href="http://www.imdb.com/title/tt0284978/quotes/qt1375101">Sunways Security Guard</a>
-  </footer>
-</blockquote>
-```
+df.iloc[행 번호, 열 번호] = 원소 선택
 
-...CSS...
+df.loc[‘행 이름’, ‘열 이름’:’열 이름’] = 슬라이싱으로도 가능
 
-``` css
-blockquote {
-  text-align: center;
-  font-weight: bold;
-}
-blockquote footer {
-  font-size: .8rem;
-}
-```
+df.set_index(‘열 이름’, inplace = True) = 열을 새로운 인덱스로 지정
 
-...and JavaScript
+df[‘추가하려는 열 이름’] = 데이터 값
 
-``` js
-const blockquote = document.querySelector("blockquote")
-const bolden = (keyString, string) =>
-  string.replace(new RegExp(keyString, 'g'), '<strong>'+keyString+'</strong>')
+df.loc[‘새로운 행 이름’] = 데이터 값 (또는 배열) => 행을 추가
 
-blockquote.innerHTML = bolden("Mr. Sullivan", blockquote.innerHTML)
-```
-
-`Single line of code`
-
-## HTML Includes
-
-### Contact form
-
-{% include site-form.html %}
-
-``` html
-{% raw %}{% include site-form.html %}{% endraw %}
-```
-
-### Demo map embed
-
-{% include map.html id="1UT-2Z-Vg_MG_TrS5X2p8SthsJhc" title="Coffee shop map" %}
-
-``` html
-{% raw %}{% include map.html id="XXXXXX" title="Coffee shop map" %}{% endraw %}
-```
-
-### Button include
-
-{% include button.html text="A button" link="https://david.darn.es" %}
-
-{% include button.html text="A button with icon" link="https://twitter.com/daviddarnes" icon="twitter" %}
-
-``` html
-{% raw %}{% include button.html text="A button" link="https://david.darn.es" %}
-{% include button.html text="A button with icon" link="https://twitter.com/daviddarnes" icon="twitter" %}{% endraw %}
-```
-
-### Icon include
-
-{% include icon.html id="twitter" title="twitter" %} [{% include icon.html id="linkedin" title="twitter" %}](https://www.linkedin.com/in/daviddarnes)
-
-``` html
-{% raw %}{% include icon.html id="twitter" title="twitter" %}
-[{% include icon.html id="linkedin" title="twitter" %}](https://www.linkedin.com/in/daviddarnes){% endraw %}
-```
-
-### Video include
-
-{% include video.html id="zrkcGL5H3MU" title="Siteleaf tutorial video" %}
-
-``` html
-{% raw %}{% include video.html id="zrkcGL5H3MU" title="Siteleaf tutorial video" %}{% endraw %}
-```
-
-
-### Image includes
-
-{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Image with caption" width="300" height="800" %}
-
-{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Right aligned image" position="right" width="300" height="800" %}
-
-{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Left aligned image" position="left" width="300" height="800" %}
-
-{% include figure.html image="https://picsum.photos/1600/800?image=894" alt="Image with just alt text" %}
-
-``` html
-{% raw %}{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Image with caption" width="300" height="800" %}
-
-{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Right aligned image" position="right" width="300" height="800" %}
-
-{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Left aligned image" position="left" width="300" height="800" %}
-
-{% include figure.html image="https://picsum.photos/1600/800?image=894" alt="Image with just alt text" %}{% endraw %}
-```
